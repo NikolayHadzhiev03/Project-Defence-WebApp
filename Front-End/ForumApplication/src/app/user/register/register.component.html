@@ -1,0 +1,22 @@
+<section id="register" class="auth-section">
+    <h2>Register</h2>
+    <form action="/register" method="POST" class="auth-form">
+        <label for="register-name">Full Name:</label>
+        <input type="text" id="register-name" name="name" placeholder="Enter your full name" required>
+
+        <label for="register-email">Email:</label>
+        <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
+        <!-- <p class="error">Invalid Email!</p> -->
+
+        <label for="register-password">Password:</label>
+        <input type="password" id="register-password" name="password" placeholder="Enter your password" required>
+            <!-- <p class="error">Invalid Password</p>
+            <p class="error">Password is required</p> -->
+        <label for="register-repassword">Re-password:</label>
+        <input type="password" id="register-repassword" name="repassword" placeholder="Confirm your password" required>
+        <!-- <p class="error">Password dosn't match!</p> -->
+
+        <button class="btn" type="submit">Register</button>
+        <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </form>
+</section>

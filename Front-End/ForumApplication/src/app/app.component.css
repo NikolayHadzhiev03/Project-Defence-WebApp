@@ -1,0 +1,13 @@
+
+.MainWrap {
+    justify-content: center; 
+    align-items: center; 
+    flex: 1; 
+    padding: 20px; 
+}
+
+
+app-catalogwithinfo {
+    max-width: 400px; 
+    width: 100%; 
+}
