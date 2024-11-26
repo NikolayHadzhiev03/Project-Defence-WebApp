@@ -1,0 +1,86 @@
+
+aside {
+    width: 100%;
+    max-width: 300px;
+    background-color: #f8f9fa; 
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif;
+    margin: 1rem auto;
+}
+
+.posts-container .posts-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #234465; 
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+}
+
+.post-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+
+.post-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.post-title {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #234465; 
+}
+
+.post-author {
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+    color: #555;
+}
+
+.post-date span {
+    font-size: 0.85rem;
+    color: #777; 
+}
+
+@media (max-width: 768px) {
+    aside {
+        max-width: 100%;
+        padding: 0.5rem;
+    }
+
+    .posts-container .posts-title {
+        font-size: 1.3rem;
+    }
+
+    .post-item {
+        padding: 0.5rem;
+    }
+
+    .post-title {
+        font-size: 1rem;
+    }
+
+    .post-author, .post-date span {
+        font-size: 0.8rem;
+    }
+}

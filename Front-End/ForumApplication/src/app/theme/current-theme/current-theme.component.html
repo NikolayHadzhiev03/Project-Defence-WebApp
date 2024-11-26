@@ -1,0 +1,48 @@
+<div class="container">
+
+    <div class="discussion-content">
+ 
+        <div class="discussion-header">
+            <div class="title-wrapper">
+                <div class="discussion-title">
+                    <h2>{{theme.themeName}}</h2>
+                    <p>Date: <time>{{theme.created_at}}</time></p>
+                </div>
+                <div class="engagement-info">
+                    <p>Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
+                    <button class="subscribe"></button>
+                    <button classs="unsubscribe"></button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="comments-section">
+            @for (Post of theme.posts; track $index) {
+                <div class="single-comment">
+                    <header class="comment-header">
+                        <p><strong>{{Post.userId.username}}</strong> posted on <time>{{Post.created_at}}</time></p>
+                    </header>
+                    <div class="comment-body">
+                        <div class="user-avatar">
+                            <img src="./profile.png" alt="User Avatar">
+                        </div>
+                        <div class="comment-text">
+                            <p>{{Post.text}}</p>
+                            
+                        </div>
+                    </div>
+                    <div class="comment-footer">
+                        <p><span>{{Post.likes.length || 0}}</span> likes</p>
+                    </div>
+                </div>
+            }
+        <div class="add-comment">
+            <p><strong>currentUser</strong> comment:</p>
+            <form class="comment-form">
+                <textarea name="postText" id="newComment" placeholder="Write your comment here..." rows="4"></textarea>
+                <button type="submit" class="post-btn">Post</button>
+            </form>
+        </div>
+    </div>
+</div>

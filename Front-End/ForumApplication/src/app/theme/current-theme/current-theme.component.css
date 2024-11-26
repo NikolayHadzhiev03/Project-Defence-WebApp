@@ -1,0 +1,126 @@
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.discussion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.discussion-title h2 {
+    font-size: 1.8rem;
+    color: #234465;
+    margin: 0;
+}
+
+.discussion-title p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.engagement-info {
+    text-align: right;
+    color: #333;
+}
+
+.comments-section {
+    margin-bottom: 2rem;
+}
+.single-comment {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-header {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.comment-header strong {
+    color: #234465;
+}
+
+.comment-body {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.comment-text p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0.5rem 0;
+}
+
+.comment-footer {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Add Comment Section */
+.add-comment {
+    margin-top: 2rem;
+}
+
+.add-comment p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #234465;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+    resize: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-form textarea:focus {
+    border-color: #234465;
+    outline: none;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #234465;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post-btn:hover {
+    background-color: #1a3452;
+}

@@ -1,0 +1,43 @@
+.Main-Container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 20px; 
+    padding: 1rem; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.Main-Container > app-theme-list {
+    flex: 2; 
+    max-width: 65%; 
+    background-color: #f8f9fa; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.Main-Container > app-post-list {
+    flex: 1; 
+    max-width: 30%; 
+    background-color: #f1f1f1;
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    padding: 0.8rem; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+    font-size: 0.9rem; 
+}
+
+
+@media (max-width: 768px) {
+    .Main-Container {
+        flex-direction: column; 
+        gap: 10px; 
+    }
+
+    .Main-Container > app-theme-list,
+    .Main-Container > app-post-list {
+        max-width: 100%; 
+    }
+}

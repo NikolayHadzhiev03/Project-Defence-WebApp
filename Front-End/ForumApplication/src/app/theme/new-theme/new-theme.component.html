@@ -1,0 +1,10 @@
+<section id="story-share" class="story-share">
+    <h2>Share Your Story</h2>
+    <form  class="story-form">
+        <label for="story-title">Story Title:</label>
+        <input type="text" id="story-title" name="title" #inputThemeName >
+        <label for="story-content">Story Content:</label>
+        <textarea id="story-content" name="content" rows="6" #inputText ></textarea>
+        <button  class="btn" (click)="addTheme($event,inputThemeName.value,inputText.value)">Share Story</button>
+    </form>
+</section>

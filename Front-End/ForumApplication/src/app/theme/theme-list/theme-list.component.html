@@ -1,0 +1,20 @@
+<div class="data-container">
+    <ul id="data-list">
+        @for(theme of Themes; track $index) {
+            <li class="catalog-item">
+                <div class="theme-item" 
+                [routerLink]="theme._id"
+                >Theme: {{theme.themeName}}</div>
+                <div class="owner-name">
+                    <p>Username: <span>{{theme.userId.username}}</span></p>
+                </div>
+                <div class="Subscribers"> 
+                    <p>
+                        Subscribers: <span>{{theme.subscribers.length || 0}}</span>
+                    </p>
+                </div>
+                <div class="createAtDate">PostAt: {{theme.created_at}}</div>
+            </li>
+        }
+    </ul>
+</div>
