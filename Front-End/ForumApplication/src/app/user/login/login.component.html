@@ -1,12 +1,30 @@
 
 <section id="Email">
     <h2>Login</h2>
-    <form class="auth-form">
+    <form class="auth-form" #form="ngForm"  (ngSubmit)="login(form)">
         <label for="login-email">Email</label>
-        <input type="text" id="login-Email" placeholder="Enter your Email">
-      <!-- <p class="error">Email is invalid!</p> -->
+        <input type="text" id="login-Email" placeholder="Enter your Email"
+        name="Email"
+        required
+        ngModel
+        #emailInput="ngModel"
+        [appEmail]="domain">
+
+
+        @if (emailInput?.touched) {
+          @if (emailInput?.errors?.['required']) {
+            <p class="error">Email is Requred!</p>
+          }
+          @if (emailInput?.errors?.['emailValidator']) {
+            <p class="error">Email is Invalid!</p>
+          }
+        }
         <label for="login-password">Password</label>
-        <input type="password" id="login-password" placeholder="Enter your password">
+        <input type="password" id="login-password" placeholder="Enter your password"
+        name="password"
+        required
+        ngModel
+        #passInput="ngModel">
         <!-- <p class="error">Invalid Email or Password!</p> -->
        
         <button>Login</button>

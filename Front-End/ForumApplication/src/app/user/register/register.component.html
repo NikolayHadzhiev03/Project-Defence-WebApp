@@ -1,22 +1,57 @@
 <section id="register" class="auth-section">
     <h2>Register</h2>
-    <form action="/register" method="POST" class="auth-form">
+    <form class="auth-form"  #form="ngForm"  (ngSubmit)="register(form)">
         <label for="register-name">Full Name:</label>
-        <input type="text" id="register-name" name="name" placeholder="Enter your full name" required>
+        <input type="text"
+         id="register-name"
+        name="name"
+        placeholder="Enter your full name"
+         required
+         ngModel
+         #nameInput="ngModel"
+         
+         >
 
         <label for="register-email">Email:</label>
-        <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
-        <!-- <p class="error">Invalid Email!</p> -->
+        <input type="email" 
+        id="register-email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required
+        ngModel
+        #emailInput="ngModel"
+        [appEmail]="domain"
+        >
+        @if (emailInput?.touched) {
+            @if (emailInput?.errors?.['required']) {
+              <p class="error">Email is Requred!</p>
+            }
+            @if (emailInput?.errors?.['emailValidator']) {
+              <p class="error">Email is Invalid!</p>
+            }
+          }
 
         <label for="register-password">Password:</label>
-        <input type="password" id="register-password" name="password" placeholder="Enter your password" required>
+        <input type="password" 
+        id="register-password"
+        name="password" 
+        placeholder="Enter your password" 
+        required
+        ngModel
+        #passInput="ngModel">
             <!-- <p class="error">Invalid Password</p>
             <p class="error">Password is required</p> -->
         <label for="register-repassword">Re-password:</label>
-        <input type="password" id="register-repassword" name="repassword" placeholder="Confirm your password" required>
+        <input type="password" 
+        id="register-repassword" 
+        name="repassword" 
+        placeholder="Confirm your password" 
+        required
+        ngModel
+        #rePassInput="ngModel">
         <!-- <p class="error">Password dosn't match!</p> -->
 
-        <button class="btn" type="submit">Register</button>
+        <button class="btn">Register</button>
         <p>Already have an account? <a routerLink="/login">Login here</a></p>
     </form>
 </section>
