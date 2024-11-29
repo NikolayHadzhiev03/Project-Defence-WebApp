@@ -11,20 +11,37 @@
         [appEmail]="domain">
 
 
-        @if (emailInput?.touched) {
-          @if (emailInput?.errors?.['required']) {
-            <p class="error">Email is Requred!</p>
-          }
-          @if (emailInput?.errors?.['emailValidator']) {
-            <p class="error">Email is Invalid!</p>
-          }
-        }
+       @if (emailInput?.touched) {
+          
+            @if (emailInput?.errors?.['required']) {
+              <p class="error">Email is Requred!</p>
+            }
+            @if (emailInput?.errors?.['emailValidator']) {
+              <p class="error">Email is Invalid!</p>
+            }
+          
+        } 
+
         <label for="login-password">Password</label>
         <input type="password" id="login-password" placeholder="Enter your password"
         name="password"
         required
         ngModel
-        #passInput="ngModel">
+        #passInput="ngModel"
+        minlength="5"
+        >
+
+        @if (passInput?.touched) {
+          
+          @if (passInput?.errors?.['required']) {
+            <p class="error">Password is Requred!</p>
+          }
+          @if (passInput?.errors?.['minlength']) {
+            <p class="error">Password shoud be at least 5 chars!</p>
+          }
+        
+      }
+
         <!-- <p class="error">Invalid Email or Password!</p> -->
        
         <button>Login</button>

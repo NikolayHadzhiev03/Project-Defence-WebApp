@@ -1,22 +1,27 @@
 <section id="register" class="auth-section">
     <h2>Register</h2>
     <form class="auth-form"  #form="ngForm"  (ngSubmit)="register(form)">
-        <label for="register-name">Full Name:</label>
+        <label for="register-name">Username:</label>
         <input type="text"
          id="register-name"
-        name="name"
-        placeholder="Enter your full name"
+        name="username"
+        placeholder="Enter your Username"
          required
          ngModel
-         #nameInput="ngModel"
-         
-         >
+         minlength="4"
+         #nameInput="ngModel">
+         @if (nameInput?.touched) {
+          @if (nameInput?.errors?.['minlength']) {
+            <p class="error">Username shoud be at least 4 chars!</p>
+          }
+
+         }
 
         <label for="register-email">Email:</label>
         <input type="email" 
         id="register-email" 
         name="email" 
-        placeholder="Enter your email" 
+        placeholder="Enter your Email" 
         required
         ngModel
         #emailInput="ngModel"
@@ -38,9 +43,16 @@
         placeholder="Enter your password" 
         required
         ngModel
+        minlength="5"
         #passInput="ngModel">
-            <!-- <p class="error">Invalid Password</p>
-            <p class="error">Password is required</p> -->
+        @if(passInput?.touched){
+          @if(passInput?.errors?.['required']){
+            <p class="error">Password is required</p>
+          }@else if (passInput?.errors?.['minlength']) {
+            <p class="error">Password shoud be at least 5 chars!</p>
+          }
+        }
+           
         <label for="register-repassword">Re-password:</label>
         <input type="password" 
         id="register-repassword" 
@@ -49,7 +61,11 @@
         required
         ngModel
         #rePassInput="ngModel">
-        <!-- <p class="error">Password dosn't match!</p> -->
+        @if(rePassInput?.touched){
+          @if(rePassInput?.value !== passInput.value){
+        <p class="error">Password dosn't match!</p> 
+          }
+        }
 
         <button class="btn">Register</button>
         <p>Already have an account? <a routerLink="/login">Login here</a></p>

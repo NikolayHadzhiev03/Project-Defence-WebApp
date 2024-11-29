@@ -13,16 +13,13 @@ import {  DOMAINS } from '../../constants';
 })
 export class LoginComponent {
   domain = DOMAINS;
-
   login(form : NgForm){
+      //TODO: Try/Catch the  server response 
     if(form.invalid){
-      return console.error("Invalid form");
-      
+      return;
     }
 
-    console.log(form);
-    
-    
+    console.log(form.value);
 
   }
 

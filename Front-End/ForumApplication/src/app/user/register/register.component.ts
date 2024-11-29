@@ -15,10 +15,13 @@ import { DOMAINS } from '../../constants';
 export class RegisterComponent {
   domain = DOMAINS;
   register(form : NgForm){
+    //TODO: Try/Catch the  server response 
     if(form.invalid){
       console.error('Form is invalid')
-      
+      return
     }
+    console.log(form.value);
+    
   }
 
 }

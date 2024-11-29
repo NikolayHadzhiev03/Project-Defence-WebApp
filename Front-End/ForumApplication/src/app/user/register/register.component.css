@@ -75,3 +75,19 @@
 .auth-section a:hover {
     text-decoration: underline;
 }
+form .error {
+    position: fixed;
+    top: 15%;          
+    left: 70%;         
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 1000;
+    max-width: 300px;
+    text-align: center;
+  }
