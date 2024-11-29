@@ -1,10 +1,39 @@
 <section id="story-share" class="story-share">
-    <h2>Share Your Story</h2>
-    <form  class="story-form">
-        <label for="story-title">Story Title:</label>
-        <input type="text" id="story-title" name="title" #inputThemeName >
-        <label for="story-content">Story Content:</label>
-        <textarea id="story-content" name="content" rows="6" #inputText ></textarea>
-        <button  class="btn" (click)="addTheme($event,inputThemeName.value,inputText.value)">Share Story</button>
+    <h2>Share Your Topic</h2>
+    <form  class="story-form" #form="ngForm"  (ngSubmit)="addTheme(form)">
+        <label for="story-title">Topic Title:</label>
+        <input type="text" 
+        id="story-title" 
+        name="title"
+        required
+        minlength="5"
+        ngModel
+        #inputThemeName = "ngModel"
+        >
+        @if (inputThemeName?.touched) {
+            @if (inputThemeName?.errors?.['required']) {
+                <p class="error">Title is required!</p>
+            } @else if (inputThemeName?.errors?.['minlength']) {
+                <p class="error">Title must be at least 5 characters!</p>
+            }
+        }
+        <label for="story-content">Topic Content:</label>
+        <textarea 
+        id="story-content" 
+        name="content" 
+        rows="6" 
+        required
+        ngModel
+        minlength="5"
+        #inputText = "ngModel"
+         ></textarea>
+         @if (inputText?.touched) {
+            @if (inputText?.errors?.['required']) {
+                <p class="error">Title is required!</p>
+            } @else if (inputThemeName?.errors?.['minlength']) {
+                <p class="error">Topic must be at least 5 characters!</p>
+            }
+        }
+        <button  class="btn">Share Topic</button>
     </form>
 </section>

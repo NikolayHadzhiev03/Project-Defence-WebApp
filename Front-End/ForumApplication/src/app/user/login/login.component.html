@@ -37,13 +37,11 @@
             <p class="error">Password is Requred!</p>
           }
           @if (passInput?.errors?.['minlength']) {
-            <p class="error">Password shoud be at least 5 chars!</p>
+            <p class="error">Password shoud be at least 5 characters!</p>
           }
         
       }
 
-        <!-- <p class="error">Invalid Email or Password!</p> -->
-       
         <button>Login</button>
         <p>Already have an account? <a routerLink="/register">Login here</a></p>
     </form>

@@ -2,14 +2,70 @@
     <div class="user-profile">
         <img src="pngwing.com.png" alt="User Profile Picture">
         <h3>User:</h3>
-        <div class="info-row">
-            <p class="info-label">Username:</p>
-            <p class="info-value">Johny</p>
-        </div>
-        <div class="info-row">
-            <p class="info-label">Email:</p>
-            <p class="info-value">john.doegmail.com</p>
-        </div>
-        <button class="edit-btn">Edit</button>
+
+        @if(isShowMode){
+            <ng-container>
+                <div class="info-row">
+                    <p class="info-label">Username:</p>
+                    <p class="info-value">Johny</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Email:</p>
+                    <p class="info-value">john.doegmail.com</p>
+                </div>
+                <button class="edit-btn" (click)="toggleMode()">Edit</button>
+            </ng-container>
+        }@else {
+            <ng-container>
+                <form  #form="ngForm" (ngSubmit)="saveProfileFn()">
+                    <div class="info-row">
+                      <label class="info-label" for="username">Username:</label>
+                      <input class="info-value" 
+                      id="username" 
+                      name="username" 
+                      type="text" 
+                      value="Johny" 
+                      required
+                      minlength="5"
+                      ngModel
+                      #usernameInput="ngModel">
+                    </div>
+                    @if (usernameInput?.touched) {
+                        @if (usernameInput?.errors?.['required']) {
+                            <p class="error">Username is required!</p>
+                        }
+                        @if (usernameInput?.errors?.['minlength']) {
+                            <p class="error">Username must be at least 5 characters!</p>
+                        }
+                    }
+                    <div class="info-row">
+                      <label class="info-label" for="email">Email:</label>
+                      <input class="info-value"
+                      id="email" 
+                      name="email" 
+                      type="email" 
+                      value="john.doegmail.com" 
+                      required
+                      [appEmail]="domain"
+                      ngModel
+                      #emailInput="ngModel">
+                    </div>
+                    @if (emailInput?.touched) {
+                        @if (emailInput?.errors?.['required']) {
+                            <p class="error">Email is required!</p>
+                        }
+                        @if (emailInput?.errors?.['emailValidator']) {
+                            <p class="error">Email is Invalid!</p>
+                        }
+                    }
+                    <button class="GobackButton" (click)="toggleMode()">Go Back</button>
+                    <button class="SaveButton">Save</button>
+                  </form>
+                  
+            </ng-container>
+        }
+
+    
+
     </div>
 </div>
