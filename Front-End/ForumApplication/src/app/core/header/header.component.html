@@ -4,29 +4,37 @@
             <img src="2.png" alt="Logo" class="logo">
         </div>
         <ul class="nav-left">
-            <li>
-                <a routerLink="/home">Home</a>
-            </li>
-            <li>
-                <a routerLink="/new-theme">New Theme</a>
-            </li>
-            <li>
-                <a routerLink="/themes">Themes</a>
-            </li>
+            
+                <li>
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/themes">Themes</a>
+                </li>
+                @if (isLogedin){
+                    <li>
+                        <a routerLink="/new-theme">New Theme</a>
+                    </li>
+                }
+            
         </ul>
         <ul class="nav-right">
-            <li>
-                <a routerLink="/login">Login</a>
-            </li>
-            <li>
-                <a routerLink="/register">Register</a>
-            </li>
-            <li>
-                <a routerLink="/profile">Profile</a>
-            </li>
-            <li>
-                <a routerLink="/logout">Logout</a>
-            </li>
+            @if (!isLogedin) {
+
+                <li>
+                    <a routerLink="/login">Login</a>
+                </li>
+                <li>
+                    <a routerLink="/register">Register</a>
+                </li>
+            }@else {
+                <li>
+                    <a routerLink="/profile">{{username}}'Profile</a>
+                </li>
+                <li>
+                    <a (click)="logout()">Logout</a>
+                </li>
+            }
         </ul>
     </nav>
 </header>

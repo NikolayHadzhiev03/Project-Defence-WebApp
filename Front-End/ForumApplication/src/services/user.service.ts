@@ -9,14 +9,18 @@ import { BehaviorSubject, tap } from "rxjs";
 })
 
 export class UserService{
-    private user$$ = new BehaviorSubject< User | undefined >(undefined)
+    private user$$ = new BehaviorSubject< User | null >(null)
     private user$ = this.user$$.asObservable();
 
     user : User | null = null;
-   constructor(private http:HttpClient){}
     get isLogged(): boolean{
         return !!this.user
     }
+   constructor(private http:HttpClient){
+    this.user$.subscribe((user)=>{
+        this.user = user;
+    })
+   }
 
     login(email : string, password : string){
         const payload = {email,password}
@@ -30,6 +34,9 @@ export class UserService{
 
     getProfile (){
         return this.http.get<User>('/api/users/profile').pipe(tap((user) =>this.user$$.next(user)));
+    }
+    logout(){
+        return this.http.post<User>('/api/logout', {}).pipe(tap((user) =>this.user$$.next(null)));
     }
 
 }
