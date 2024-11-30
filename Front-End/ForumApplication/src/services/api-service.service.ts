@@ -15,11 +15,9 @@ export class ApiServiceService {
   };
 
     getThemes(){
-      const {apiUrl} = environments;
       return this.http.get<Theme[]>(`/api/themes`);
     }
     getCurrentTheme(id :string){
-      const {apiUrl} = environments;
       return this.http.get<Theme>(`/api/themes/${id}`)
     }
 

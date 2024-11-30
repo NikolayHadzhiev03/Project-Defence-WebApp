@@ -12,7 +12,7 @@ import { User } from '../../../models/user';
 })
 export class HeaderComponent {
 
-  get isLogedin():boolean{
+  get isLoggedin():boolean{
     return this.userService.isLogged;
 
   }

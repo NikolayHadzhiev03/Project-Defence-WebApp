@@ -13,14 +13,15 @@ export class UserService{
     private user$ = this.user$$.asObservable();
 
     user : User | null = null;
+    constructor(private http:HttpClient){
+        this.user$.subscribe((user)=>{
+        this.user = user;
+    })
+    }
+
     get isLogged(): boolean{
         return !!this.user
     }
-   constructor(private http:HttpClient){
-    this.user$.subscribe((user)=>{
-        this.user = user;
-    })
-   }
 
     login(email : string, password : string){
         const payload = {email,password}
