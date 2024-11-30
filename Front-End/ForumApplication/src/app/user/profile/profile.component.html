@@ -17,18 +17,18 @@
             </ng-container>
         }@else {
             <ng-container>
-                <form  #form="ngForm" (ngSubmit)="saveProfileFn()">
+                <form  #form="ngForm" (ngSubmit)="saveProfileFn(form)">
                     <div class="info-row">
                       <label class="info-label" for="username">Username:</label>
                       <input class="info-value" 
                       id="username" 
                       name="username" 
                       type="text" 
-                      value="Johny" 
                       required
                       minlength="5"
-                      ngModel
-                      #usernameInput="ngModel">
+                      ngModel="Johny"
+                      #usernameInput="ngModel"
+                      >
                     </div>
                     @if (usernameInput?.touched) {
                         @if (usernameInput?.errors?.['required']) {
@@ -43,11 +43,10 @@
                       <input class="info-value"
                       id="email" 
                       name="email" 
-                      type="email" 
-                      value="john.doegmail.com" 
+                      type="email"  
                       required
                       [appEmail]="domain"
-                      ngModel
+                      ngModel="john.doegmail.com"
                       #emailInput="ngModel">
                     </div>
                     @if (emailInput?.touched) {

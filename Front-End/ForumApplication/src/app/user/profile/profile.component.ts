@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormsModule } from '@angular/forms';
+import {FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants';
 
@@ -18,7 +18,15 @@ domain = DOMAINS;
   }
     
 
-  saveProfileFn(){
+  saveProfileFn(form : NgForm){
+    if(form.invalid){
+      console.error('Invalid form')
+      return;
+    }
+
+
+    console.log(form.value);
+    
 
   }
 }
