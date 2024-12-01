@@ -24,8 +24,7 @@ export class LoggedInGuard implements CanActivate {
         }
         return true;
       }),
-      //!This catch is becouse the server is retturning status/code 401
-      //!so i need to catch it ,becouse it wont let  non logged in users to  go to register page 
+
       catchError((error) => {
         if (error.status === 401) {
           return of(true);

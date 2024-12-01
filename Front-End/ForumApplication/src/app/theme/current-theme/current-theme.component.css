@@ -79,7 +79,6 @@
     color: #888;
 }
 
-/* Add Comment Section */
 .add-comment {
     margin-top: 2rem;
 }
@@ -124,3 +123,32 @@
 .post-btn:hover {
     background-color: #1a3452;
 }
+
+.subscribe{
+    background-color: #234465;
+    color: white; 
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.subscribe:hover{
+    background-color: #1c365a;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e63939;
+  }
+  

@@ -10,8 +10,11 @@
                 </div>
                 <div class="engagement-info">
                     <p>Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
-                    <button class="subscribe"></button>
-                    <button classs="unsubscribe"></button>
+                    @if (isLoggedin) {
+                        @if(!theme.subscribers.includes(User?._id || '')){
+                             <button class="subscribe" (click)="onSubscribe(theme._id)">Subscribe</button>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -25,7 +28,7 @@
                     </header>
                     <div class="comment-body">
                         <div class="user-avatar">
-                            <img src="./profile.png" alt="User Avatar">
+                            <img src="pngwing.com.png" alt="User Avatar">
                         </div>
                         <div class="comment-text">
                             <p>{{Post.text}}</p>
@@ -34,15 +37,33 @@
                     </div>
                     <div class="comment-footer">
                         <p><span>{{Post.likes.length || 0}}</span> likes</p>
+                        @if(!(User?._id === Post.userId._id))
+                        {@if (!Post.likes.includes(User?._id || '')) {
+                            <button class="like-button" (click)="onLike(Post._id)">Like</button>
+                        }}
                     </div>
+                    @if (User?._id === Post.userId._id) {
+                <button (click)="onDeletePost(theme._id,Post._id)" class="delete-btn">Delete</button>
+                    }
                 </div>
             }
-        <div class="add-comment">
-            <p><strong>currentUser</strong> comment:</p>
-            <form class="comment-form">
-                <textarea name="postText" id="newComment" placeholder="Write your comment here..." rows="4"></textarea>
-                <button type="submit" class="post-btn">Post</button>
-            </form>
-        </div>
+
+        @if (isLoggedin) {
+                <div class="add-comment">
+                    <p><strong>{{User?.username}}</strong> comment:</p>
+                    <form class="comment-form" #form="ngForm" (ngSubmit)="createPost(form)">
+                        <textarea 
+                        name="postText" 
+                        id="newComment" 
+                        placeholder="Write your comment here..." 
+                        rows="4"
+                        ngModel
+                        #postInput="ngModel"
+                        ></textarea>
+                        <button class="post-btn" >Post</button>
+                    </form>
+                </div>
+            
+        }
     </div>
 </div>

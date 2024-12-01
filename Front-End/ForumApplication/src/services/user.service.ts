@@ -39,5 +39,9 @@ export class UserService{
     logout(){
         return this.http.post<User>('/api/logout', {}).pipe(tap((user) =>this.user$$.next(null)));
     }
+    editProfile(username : string, email : string ){
+       const payload = { username,email}
+        return this.http.put<User>(`/api/users/profile`,payload)
+    }
 
 }

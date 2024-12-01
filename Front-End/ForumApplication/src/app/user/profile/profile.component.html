@@ -7,11 +7,11 @@
             <ng-container>
                 <div class="info-row">
                     <p class="info-label">Username:</p>
-                    <p class="info-value">Johny</p>
+                    <p class="info-value">{{User?.username}}</p>
                 </div>
                 <div class="info-row">
                     <p class="info-label">Email:</p>
-                    <p class="info-value">john.doegmail.com</p>
+                    <p class="info-value">{{User?.email}}</p>
                 </div>
                 <button class="edit-btn" (click)="toggleMode()">Edit</button>
             </ng-container>
@@ -26,7 +26,7 @@
                       type="text" 
                       required
                       minlength="5"
-                      ngModel="Johny"
+                      [ngModel]='User?.username'
                       #usernameInput="ngModel"
                       >
                     </div>
@@ -46,7 +46,7 @@
                       type="email"  
                       required
                       [appEmail]="domain"
-                      ngModel="john.doegmail.com"
+                      [ngModel]='User?.email'
                       #emailInput="ngModel">
                     </div>
                     @if (emailInput?.touched) {

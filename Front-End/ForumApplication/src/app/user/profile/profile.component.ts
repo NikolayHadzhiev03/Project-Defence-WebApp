@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +15,18 @@ import { DOMAINS } from '../../constants';
 })
 export class ProfileComponent {
   isShowMode : boolean = true;
+  
 domain = DOMAINS;
+
+constructor(
+  private userService : UserService,
+  private router : Router
+){}
   toggleMode () {
     this.isShowMode = !this.isShowMode;
+  }
+  get User(): User | null  {
+    return this.userService.user
   }
     
 
@@ -23,10 +35,12 @@ domain = DOMAINS;
       console.error('Invalid form')
       return;
     }
-
-
-    console.log(form.value);
-    
-
+    const {username , email} = form.value;
+    this.userService.editProfile(username,email).subscribe((response )=>{
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([`/profile`]);
+      });
+      
+    })
   }
 }
