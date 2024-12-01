@@ -8,9 +8,11 @@
                 <li>
                     <a routerLink="/home">Home</a>
                 </li>
-                <li>
-                    <a routerLink="/themes">Themes</a>
-                </li>
+                @if(!isLoggedin){
+                    <li>
+                        <a routerLink="/themes">Themes</a>
+                    </li>
+                }
                 @if (isLoggedin){
                     <li>
                         <a routerLink="/new-theme">New Theme</a>

@@ -8,11 +8,12 @@ import { NewThemeComponent } from './theme/new-theme/new-theme.component';
 import { CurrentThemeComponen } from './theme/current-theme/current-theme.component';
 import { MainComponent } from './main/main.component';
 import { LoggedInGuard } from './guards/logged-in-guard.guard';
+import { homeGuard } from './guards/home.guard';
 
 
 export const routes: Routes = [
     {path : "", redirectTo : 'home', pathMatch:"full"},
-    {path: "home", component : HomeComponent},
+    {path: "home", component : HomeComponent,canActivate :[homeGuard]},
     { path: 'new-theme', component: NewThemeComponent },
     {path: 'themes', children : [
         {path : '', component: MainComponent},
