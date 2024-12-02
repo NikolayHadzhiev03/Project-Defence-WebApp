@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedInGuard implements CanActivate {
+export class isGuest implements CanActivate {
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -15,19 +15,16 @@ export class LoggedInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    debugger
     return this.userService.getProfile().pipe(
       map((user) => {
         if (user) {
-          this.router.navigate(['/404']);
-          return false; 
+          return true; 
+        } else {
+          this.router.navigate(['/404']); 
+          return false;
         }
-        return true;
       }),
-      catchError((error) => {
-        if (error.status === 401) {
-          return of(true);
-        }
+      catchError(() => {
         this.router.navigate(['/404']); 
         return of(false);
       })

@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit{
     this.apiService.getPost().subscribe((posts)=>{
       this.posts = posts
       
+      
     })
     
   }

@@ -37,7 +37,7 @@
                     </div>
                     <div class="comment-footer">
                         <p><span>{{Post.likes.length || 0}}</span> likes</p>
-                        @if(!(User?._id === Post.userId._id))
+                        @if(!(User?._id === Post.userId._id) && isLoggedin)
                         {@if (!Post.likes.includes(User?._id || '')) {
                             <button class="like-button" (click)="onLike(Post._id)">Like</button>
                         }}

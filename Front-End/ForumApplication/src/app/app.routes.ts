@@ -9,6 +9,7 @@ import { CurrentThemeComponen } from './theme/current-theme/current-theme.compon
 import { MainComponent } from './main/main.component';
 import { LoggedInGuard } from './guards/logged-in-guard.guard';
 import { homeGuard } from './guards/home.guard';
+import { isGuest } from './guards/isGuest.guard';
 
 
 export const routes: Routes = [
@@ -21,7 +22,7 @@ export const routes: Routes = [
     ]},
     {path : "login",component : LoginComponent ,canActivate : [LoggedInGuard]},
     {path : "register",component : RegisterComponent,canActivate : [LoggedInGuard]},
-    {path : "profile",component : ProfileComponent},
+    {path : "profile",component : ProfileComponent,canActivate : [isGuest]},
     { path: "404", component: ErrorPageComponent },  
     { path: "**", redirectTo: '/404', pathMatch: "full" }
     

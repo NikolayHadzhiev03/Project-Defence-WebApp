@@ -21,7 +21,6 @@ export class NewThemeComponent {
   addTheme(form : NgForm){
     
     if(form.invalid){
-      console.log(form)
       console.error('Invalid form')
       return
     }

@@ -68,7 +68,6 @@ export class CurrentThemeComponen implements OnInit  {
       }
       onLike(postId : string){
         this.themeService.likePost(postId).subscribe((response)=>{
-          console.log(response);
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([`/themes/${this.theme._id}`]);
           });
