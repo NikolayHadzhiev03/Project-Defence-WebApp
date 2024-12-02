@@ -1,0 +1,46 @@
+<form  #form ="ngForm"  (ngSubmit)="onSearch(form)"> 
+    <div class="searchWrapper">
+    <div class="search-container" >
+        <input 
+            type="text" 
+            id="search-input" 
+            name="searchText"
+            required
+            placeholder="Search themes or posts..." 
+            ngModel
+            #searchInput="ngModel"
+        />
+        <button id="search-button">Search</button>
+    </div> 
+    </div>
+</form>
+    
+
+        <div class="data-container">
+        @for (theme of filteredThemes; track $index) {
+            <ul id="data-list">
+                <li  class="catalog-item">
+                    <div class="theme-item" [routerLink]="['/themes', theme._id]">
+                        Theme: {{ theme.themeName}}
+                    </div>
+                    <div class="owner-name">
+                        <p>Username: <span>{{ theme.userId.username }}</span></p>
+                    </div>
+                    <div class="subscribers">
+                        <p>Subscribers: <span>{{ theme.subscribers.length || 0 }}</span></p>
+                    </div>
+                    <div class="createAtDate">
+                        PostAt: {{ theme.created_at }}
+                    </div>
+                </li>
+            </ul>
+        }@empty {
+            <div class="no-results">
+            No results found. Please try a different search term.
+        </div>
+
+        }
+             </div>
+
+        
+    

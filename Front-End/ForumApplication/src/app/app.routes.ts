@@ -10,15 +10,17 @@ import { MainComponent } from './main/main.component';
 import { LoggedInGuard } from './guards/logged-in-guard.guard';
 import { homeGuard } from './guards/home.guard';
 import { isGuest } from './guards/isGuest.guard';
+import { SearchThemeComponent } from './theme/Search-theme/search-theme/search-theme.component';
 
 
 export const routes: Routes = [
     {path : "", redirectTo : 'home', pathMatch:"full"},
     {path: "home", component : HomeComponent,canActivate :[homeGuard]},
-    { path: 'new-theme', component: NewThemeComponent },
+    { path: 'new-theme', component: NewThemeComponent ,canActivate : [isGuest]},
+    {path: 'search-Theme', component: SearchThemeComponent },
     {path: 'themes', children : [
         {path : '', component: MainComponent},
-        {path : ':Themeid', component: CurrentThemeComponen}
+        {path : ':Themeid', component: CurrentThemeComponen},
     ]},
     {path : "login",component : LoginComponent ,canActivate : [LoggedInGuard]},
     {path : "register",component : RegisterComponent,canActivate : [LoggedInGuard]},
