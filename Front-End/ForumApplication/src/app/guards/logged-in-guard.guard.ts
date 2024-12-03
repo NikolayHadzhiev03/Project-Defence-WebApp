@@ -15,7 +15,6 @@ export class LoggedInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    debugger
     return this.userService.getProfile().pipe(
       map((user) => {
         if (user) {

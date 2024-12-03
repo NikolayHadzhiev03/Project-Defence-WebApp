@@ -17,6 +17,8 @@ import { ThemeandPostService } from '../../../services/themeand-post.service';
 })
 export class CurrentThemeComponen implements OnInit  { 
   theme = {} as Theme
+  editingPostId: string | null = null; 
+
   get isLoggedin():boolean{
     return this.userService.isLogged;
   }
@@ -36,7 +38,6 @@ export class CurrentThemeComponen implements OnInit  {
     const id = this.route.snapshot.params['Themeid'];
     this.apiService.getCurrentTheme(id).subscribe((theme)=>{ 
       this.theme = theme;
-
     })
   } 
     createPost(form : NgForm){
@@ -52,14 +53,12 @@ export class CurrentThemeComponen implements OnInit  {
 
     onDeletePost(themeId :string  , postId: string ){
       this.themeService.deletePost(themeId,postId).subscribe((data )=>{
-        console.log('Sucsessful');
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([`/themes/${this.theme._id}`]);
         });
       },(error)=>{console.error("Someting whent wrong!!!")})}
  
       onSubscribe(themeId: string) {
-
         this.themeService.subscribeToTheme(themeId).subscribe((data) => {
           this.theme.subscribers.push(this.User?._id || ""); 
         }, (error) => {
@@ -68,14 +67,23 @@ export class CurrentThemeComponen implements OnInit  {
       }
       onLike(postId : string){
         this.themeService.likePost(postId).subscribe((response)=>{
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate([`/themes/${this.theme._id}`]);
-          });
-        })
 
+          // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate([`/themes/${this.theme._id}`]);
 
-      }
-      
+          // });
+        })}
 
+        startEditing(postId: string) {
+          this.editingPostId = postId;
+        }
+
+        saveEditedPost(postId: string, form : NgForm) {
+          const {editText} = form.value
+           this.themeService.editPost(this.theme._id,postId,editText).subscribe((response)=>{
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([`/themes/${this.theme._id}`]);
+            });
+          })}
 }
 

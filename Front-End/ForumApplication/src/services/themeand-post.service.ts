@@ -34,4 +34,8 @@ export class ThemeandPostService {
     likePost(postId: string){
       return this.http.put(`/api/likes/${postId}`, {})
     }
+    editPost(themeId:string , postId:string , postText : string){
+      const payload = {postText}
+      return this.http.put(`/api/themes/${themeId}/posts/${postId}`,payload);
+    }
 }

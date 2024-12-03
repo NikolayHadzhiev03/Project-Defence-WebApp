@@ -30,10 +30,18 @@
                         <div class="user-avatar">
                             <img src="pngwing.com.png" alt="User Avatar">
                         </div>
-                        <div class="comment-text">
-                            <p>{{Post.text}}</p>
-                            
-                        </div>
+                        @if(editingPostId !== Post._id){
+                            <div class="comment-text">
+                                <p>{{Post.text}}</p>
+                                
+                            </div>
+                        }@else {<form #form="ngForm" (ngSubmit)="saveEditedPost(Post._id,form)">
+                            <textarea [ngModel]="Post.text" #editinput="ngModel" rows="3" name="editText"></textarea>
+                        <button >Save</button>
+                        <button (click)="editingPostId = null">Cancel</button>
+                        </form>
+                        }
+                     
                     </div>
                     <div class="comment-footer">
                         <p><span>{{Post.likes.length || 0}}</span> likes</p>
@@ -44,6 +52,7 @@
                     </div>
                     @if (User?._id === Post.userId._id) {
                 <button (click)="onDeletePost(theme._id,Post._id)" class="delete-btn">Delete</button>
+                <button class="edit-btn"  (click)="startEditing(Post._id)">Edit</button>
                     }
                 </div>
             }
