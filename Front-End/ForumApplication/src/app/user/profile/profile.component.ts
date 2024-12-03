@@ -28,7 +28,6 @@ constructor(
   get User(): User | null  {
     return this.userService.user
   }
-    
 
   saveProfileFn(form : NgForm){
     if(form.invalid){
@@ -37,9 +36,8 @@ constructor(
     }
     const {username , email} = form.value;
     this.userService.editProfile(username,email).subscribe((response )=>{
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([`/profile`]);
-      });
+      this.userService.user = response; 
+      this.isShowMode = true;
       
     })
   }
