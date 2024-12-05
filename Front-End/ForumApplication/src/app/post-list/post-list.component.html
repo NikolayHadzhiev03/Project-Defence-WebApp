@@ -7,7 +7,7 @@
                     <a [routerLink]="['/themes',post.themeId._id]">
                         <h3 class="post-title">{{ post.themeId.themeName }} </h3>
                         <p class="post-author">Автор: {{post.userId.username }}</p>
-                        <p class="post-date"><span>{{ post.created_at }}</span></p>
+                        <p class="post-date"><span>{{ post.created_at | relativeTime }}</span></p>
                     </a>
                 </div>
             }

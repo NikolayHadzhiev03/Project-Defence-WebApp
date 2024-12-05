@@ -6,12 +6,13 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ThemeandPostService } from '../../../services/themeand-post.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-current-theme',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,DatePipe],
   templateUrl: './current-theme.component.html',
   styleUrl: './current-theme.component.css'
 })
@@ -28,7 +29,6 @@ export class CurrentThemeComponen implements OnInit  {
   }
   constructor(
     private route : ActivatedRoute,
-    private router : Router,
      private apiService : ApiServiceService,
      private userService : UserService,
      private themeService : ThemeandPostService,
@@ -60,6 +60,7 @@ export class CurrentThemeComponen implements OnInit  {
       }
       this.themeService.createPost(id, postText).subscribe((data)=>{
         this.gettheme();
+        form.resetForm();
       })}
     
       onDeletePost(themeId: string, postId: string) {
@@ -86,6 +87,10 @@ export class CurrentThemeComponen implements OnInit  {
         } 
 
         saveEditedPost(postId: string, form : NgForm) {
+        if(form.invalid){
+          return
+        }
+        
           const {editText} = form.value
            this.themeService.editPost(this.theme._id,postId,editText).subscribe((response)=>{
             this.gettheme();

@@ -6,7 +6,7 @@
             <div class="title-wrapper">
                 <div class="discussion-title">
                     <h2>{{theme.themeName}}</h2>
-                    <p>Date: <time>{{theme.created_at}}</time></p>
+                    <p>Date: <time>{{theme.created_at | date:'medium'}}</time></p>
                 </div>
                 <div class="engagement-info">
                     <p>Subscribers: <span>{{theme.subscribers.length || 0}}</span></p>
@@ -24,7 +24,7 @@
             @for (Post of theme.posts; track $index) {
                 <div class="single-comment">
                     <header class="comment-header">
-                        <p><strong>{{Post.userId.username}}</strong> posted on <time>{{Post.created_at}}</time></p>
+                        <p><strong>{{Post.userId.username}}</strong> posted on <time>{{Post.created_at | date:'medium'}}</time></p>
                     </header>
                     <div class="comment-body">
                         <div class="user-avatar">
@@ -36,9 +36,15 @@
                                 
                             </div>
                         }@else {<form #form="ngForm" (ngSubmit)="saveEditedPost(Post._id,form)">
-                            <textarea [ngModel]="Post.text" #editinput="ngModel" rows="3" name="editText"></textarea>
+                            <textarea [ngModel]="Post.text" #editinput="ngModel" rows="3" required minlength="6" name="editText"></textarea>
                         <button >Save</button>
                         <button (click)="editingPostId = null">Cancel</button>
+                         
+                        @if (editinput?.touched) {
+                            @if(editinput?.errors?.['required'] || editinput?.errors?.['minlength']){
+                                <p class="error">Post text must be at least 5 Characters!</p>
+                            }
+                        }
                         </form>
                         }
                     </div>
@@ -66,12 +72,24 @@
                         id="newComment" 
                         placeholder="Write your comment here..." 
                         rows="4"
+                        required
+                        minlength="6"
                         ngModel
                         #postInput="ngModel"
                         ></textarea>
                         <button class="post-btn" >Post</button>
+
+
+                        @if (postInput?.touched) {
+                            @if(postInput?.errors?.['required'] || postInput?.errors?.['minlength']){
+                                <p class="error">Your post must contain at least 5 characters.</p>
+
+                            }
+                        }
                     </form>
                 </div>
+
+                
             
         }
     </div>

@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../../../services/api-service.service';
 import { Theme } from '../../../../models/theme';
 import { FormsModule, NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-theme',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule,DatePipe],
   templateUrl: './search-theme.component.html',
   styleUrls: ['./search-theme.component.css']
 })

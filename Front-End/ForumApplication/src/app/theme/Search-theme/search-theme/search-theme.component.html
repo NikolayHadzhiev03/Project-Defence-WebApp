@@ -30,7 +30,7 @@
                         <p>Subscribers: <span>{{ theme.subscribers.length || 0 }}</span></p>
                     </div>
                     <div class="createAtDate">
-                        PostAt: {{ theme.created_at }}
+                        PostAt: {{ theme.created_at | date:'medium'}}
                     </div>
                 </li>
             </ul>
