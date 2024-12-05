@@ -1,22 +1,24 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
-import { BehaviorSubject, tap } from "rxjs";
+import { BehaviorSubject, Subscription, tap } from "rxjs";
 
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class UserService{
+export class UserService implements OnDestroy{
     private user$$ = new BehaviorSubject< User | null >(null)
     private user$ = this.user$$.asObservable();
+    private subscription = new Subscription();
 
     user : User | null = null;
     constructor(private http:HttpClient){
-        this.user$.subscribe((user)=>{
+      const userSubscription = this.user$.subscribe((user)=>{
         this.user = user;
-    })
+    });
+    this.subscription.add(userSubscription);
     }
 
     get isLogged(): boolean{
@@ -43,5 +45,7 @@ export class UserService{
        const payload = { username,email}
         return this.http.put<User>(`/api/users/profile`,payload)
     }
-
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe(); 
+      }
 }
