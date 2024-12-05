@@ -3,9 +3,9 @@
         <h2 class="posts-title">Последни публикации</h2>
         <div class="posts-list">
             @for (post of posts; track $index) {
-                <div class="post-item"  >
-                    <a routerLink="" >
-                        <h3 class="post-title">{{ post.themeId.themeName }}</h3>
+                <div class="post-item">
+                    <a [routerLink]="['/themes',post.themeId._id]">
+                        <h3 class="post-title">{{ post.themeId.themeName }} </h3>
                         <p class="post-author">Автор: {{post.userId.username }}</p>
                         <p class="post-date"><span>{{ post.created_at }}</span></p>
                     </a>
