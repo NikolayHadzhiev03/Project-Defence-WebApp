@@ -41,7 +41,6 @@ export class CurrentThemeComponen implements OnInit  {
       
       this.apiService.getCurrentTheme(themeId).subscribe((theme) => {
         this.theme = theme;
-
       });
     }
     gettheme() {

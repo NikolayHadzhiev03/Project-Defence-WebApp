@@ -66,6 +66,9 @@
         <p class="error">Password dosn't match!</p> 
           }
         }
+        @if(errorMessage){
+          <p class="error">{{errorMessage}}</p>
+        }
 
         <button class="btn">Register</button>
         <p>Already have an account? <a routerLink="/login">Login here</a></p>

@@ -20,7 +20,10 @@
               <p class="error">Email is Invalid!</p>
             }
           
-        } 
+        }
+        @if(errorMessage){
+          <p class="error">{{errorMessage}}</p>
+        }
 
         <label for="login-password">Password</label>
         <input type="password" id="login-password" placeholder="Enter your password"
@@ -43,6 +46,6 @@
       }
 
         <button>Login</button>
-        <p>Already have an account? <a routerLink="/register">Login here</a></p>
+        <p>Don't have an account? <a routerLink="/register">Login here</a></p>
     </form>
 </section>

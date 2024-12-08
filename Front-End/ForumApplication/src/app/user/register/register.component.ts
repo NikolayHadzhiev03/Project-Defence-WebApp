@@ -14,6 +14,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class RegisterComponent {
   domain = DOMAINS;
+  errorMessage : string |null = null; 
 
   constructor(private userService : UserService,private router :Router){}
   register(form : NgForm){
@@ -24,9 +25,15 @@ export class RegisterComponent {
 
     //!Try catch error handeling
     const {username,email,password,repassword} = form.value;
-    this.userService.register(username,email,password,repassword).subscribe(()=>{
-      this.router.navigate(['/home'])
-    })
+    this.userService.register(username,email,password,repassword).subscribe({
+      next: ()=>{
+        this.router.navigate(['/home'])
+      },
+      error : (errorResponse)=>{
+        this.errorMessage =  errorResponse.error.message  || 'An unexpected error occurred.'
+      }
+    }
+  )
 
     
   }

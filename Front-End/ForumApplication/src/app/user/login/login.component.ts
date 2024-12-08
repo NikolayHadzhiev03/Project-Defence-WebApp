@@ -14,17 +14,24 @@ import { UserService } from '../../../services/user.service';
 })
 export class LoginComponent {
   domain = DOMAINS;
+  errorMessage : string | null =null;
+
 
   constructor(private userService:UserService,private router : Router){}
   login(form : NgForm){
-      //TODO: Try/Catch the  server response 
     if(form.invalid){
       return;
     }
 
     const {Email,password} = form.value;
-    this.userService.login(Email,password).subscribe((response)=>{
-      this.router.navigate(['/home']);
-    })
+    this.userService.login(Email,password).subscribe({
+      next : ()=> {
+        this.router.navigate(['/home'])
+      },
+      error : (errorResponse)=> {
+        this.errorMessage = errorResponse.error.message || 'An unexpected error occurred.'
+      }
+    }
+    )
   }
 }
