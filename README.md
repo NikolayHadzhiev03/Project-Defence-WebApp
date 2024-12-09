@@ -26,7 +26,7 @@ Search for topics.
 
 
 # To start the project 
- # Restore the Database
+ ## Restore the Database
 The application uses MongoDB as the database. You need to restore the provided database files before running the backend.
 
 Navigate to The folder Back-End/forum where the database files are located.
@@ -35,7 +35,7 @@ Run the following command in cmd to restore the database:
 mongorestore -d forum C:\(put the path to the folder containing the data here)
 
 If the process completes successfully, the database should be restored and ready for use.
- # Install the dependencies
+ ## Install the dependencies
 Now u need to install dependencies for the BackEnd:
 cd Back-End/Rest-api 
 npm install
@@ -43,7 +43,7 @@ To start the Server u need to type (node .)
 If everything is set up correctly, you should see the following message:
 Listening on port 3000!
 
- # Start the Angular Application
+ ## Start the Angular Application
 Navigate to the Angular project directory:
 cd Front-End/ForumApplication/src/app
 
