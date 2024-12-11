@@ -23,7 +23,6 @@ export class RegisterComponent {
       return
     }
 
-    //!Try catch error handeling
     const {username,email,password,repassword} = form.value;
     this.userService.register(username,email,password,repassword).subscribe({
       next: ()=>{
