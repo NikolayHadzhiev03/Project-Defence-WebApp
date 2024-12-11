@@ -32,6 +32,7 @@ export class CurrentThemeComponen implements OnInit  {
      private apiService : ApiServiceService,
      private userService : UserService,
      private themeService : ThemeandPostService,
+     private router : Router
     ){}
     
     
@@ -39,9 +40,16 @@ export class CurrentThemeComponen implements OnInit  {
     ngOnInit(): void {
       const themeId = this.route.snapshot.params['Themeid'];
       
-      this.apiService.getCurrentTheme(themeId).subscribe((theme) => {
-        this.theme = theme;
-      });
+      this.apiService.getCurrentTheme(themeId).subscribe({
+        next: (theme)=> {
+          this.theme = theme;
+        },
+        error:(ErrorResponse)=>{
+         if (ErrorResponse.status === 500){
+            this.router.navigate(["/404"])
+          }
+        }
+      })
     }
     gettheme() {
       const themeId = this.route.snapshot.params['Themeid'];
